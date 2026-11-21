@@ -354,14 +354,19 @@
     <section class="hero">
       <h1 class="hero-title">👋 开箱即用的脚手架模板集合</h1>
       <p class="hero-desc">
-        本目录收录 5 套可直接作为新项目起步工程的脚手架模板，覆盖 Web 前端、多端应用、
-        桌面客户端与后端服务。各模板首页风格与 README 结构保持统一，clone 后安装依赖即可运行。
+        本目录收录 10 套可直接作为新项目起步工程的脚手架模板，覆盖 Web 前端、多端应用、
+        移动应用、桌面客户端与后端服务。各模板首页风格与 README 结构保持统一，clone 后安装依赖即可运行。
       </p>
       <div class="hero-tags">
         <span class="hero-tag">Vue 3</span>
         <span class="hero-tag">React 19</span>
         <span class="hero-tag">uni-app 3</span>
+        <span class="hero-tag">React Native</span>
         <span class="hero-tag">Electron</span>
+        <span class="hero-tag">Node.js</span>
+        <span class="hero-tag">Express</span>
+        <span class="hero-tag">Koa</span>
+        <span class="hero-tag">Java / Spring Boot</span>
         <span class="hero-tag">Egg.js</span>
         <span class="hero-tag">pnpm</span>
       </div>
@@ -369,7 +374,7 @@
 
     <!-- 脚手架卡片列表 -->
     <section>
-      <h2 class="section-title">脚手架一览（5 个）</h2>
+      <h2 class="section-title">脚手架一览（10 个）</h2>
       <!-- 卡片由下方脚本按数据渲染，新增脚手架只需在 SCAFFOLDS 数组追加一项 -->
       <div class="scaffold-grid" id="scaffoldGrid"></div>
     </section>
@@ -380,9 +385,9 @@
       <ul class="conventions-list">
         <li class="conventions-item">前端三套模板首页风格统一（渐变横幅 + 技术栈卡片 + 功能演示）</li>
         <li class="conventions-item">README 结构统一：核心版本 → 快速开始 → 目录结构 → 基本引入 → 常用配置</li>
-        <li class="conventions-item">包管理器推荐 pnpm，Node.js ≥ 16（推荐 18 / 20 / 22）</li>
-        <li class="conventions-item">开发端口约定：Vue3 / uni-app 5005、React 3000、Egg.js 7001</li>
-        <li class="conventions-item">请求域名统一由 .env 的 VITE_TINTMCE_BASE_URL 注入</li>
+        <li class="conventions-item">包管理器推荐 pnpm，Node.js ≥ 16（推荐 18 / 20 / 22，RN 模板需 ≥ 22.11）</li>
+        <li class="conventions-item">开发端口约定：Vue3 / uni-app 5005、React 3000、Egg.js 7001、Express 7002、Koa 7003、RN Metro 8081、RuoYi 前端 80 / 后端 8080（默认 80）</li>
+        <li class="conventions-item">前端请求域名统一由 .env 的 VITE_TINTMCE_BASE_URL 注入；后端统一响应 { code, message, data }</li>
         <li class="conventions-item">国内网络已内置 npmmirror 镜像（electron 二进制 / 打包工具）</li>
       </ul>
     </section>
@@ -424,9 +429,9 @@
       },
       {
         icon: '⚛️',
-        name: 'React18 脚手架模板',
+        name: 'React19 脚手架模板',
         category: 'Web 前端',
-        desc: '与 Vue3 版同款演示的 React 起步工程（实际已升级 React 19），风格功能与 vue3-scaffolding-template 保持一致。',
+        desc: '与 Vue3 版同款演示的 React 起步工程（已升级 React 19），风格功能与 vue3-scaffolding-template 保持一致。',
         tags: ['React 19', 'React Router 6', 'Zustand', 'Ant Design', 'CRA + rewired'],
         features: [
           '首页演示与 Vue3 版逐项对齐（横幅 / 技术栈 / 功能演示）',
@@ -435,8 +440,8 @@
           'Axios 统一封装 + Ant Design 中文语言包',
         ],
         commands: 'pnpm install\npnpm start   # 端口 3000',
-        readme: './react18-scaffolding-template/README.md',
-        path: 'react18-scaffolding-template/',
+        readme: './react19-scaffolding-template/README.md',
+        path: 'react19-scaffolding-template/',
       },
       {
         icon: '📱',
@@ -453,6 +458,22 @@
         commands: 'pnpm install\npnpm run dev:h5         # H5，端口 5005\npnpm run dev:mp-weixin # 微信小程序',
         readme: './uniapp-vue3-scaffolding-template/README.md',
         path: 'uniapp-vue3-scaffolding-template/',
+      },
+      {
+        icon: '📲',
+        name: 'React Native 脚手架模板',
+        category: '移动应用',
+        desc: 'React Native 0.88 + React 19 + TypeScript 起步工程，内置原生导航栈与 Zustand 状态管理，一套代码发布 iOS / Android。',
+        tags: ['React Native 0.88', 'React 19', 'TypeScript', 'React Navigation 7', 'Zustand'],
+        features: [
+          '原生导航栈（native-stack）+ 安全区适配',
+          'Zustand 状态管理（对齐 Pinia 计数器演示）',
+          '家族同款首页演示（横幅 / 技术栈 / 功能演示）',
+          'Jest 测试 + Metro 打包验证通过',
+        ],
+        commands: 'pnpm install\npnpm ios       # 或 pnpm android\npnpm start    # Metro 端口 8081',
+        readme: './react-native-scaffolding-template/README.md',
+        path: 'react-native-scaffolding-template/',
       },
       {
         icon: '🖥️',
@@ -485,6 +506,70 @@
         commands: 'npm i\nnpm run dev   # 端口 7001\n# Swagger: http://127.0.0.1:7001/api/swagger/index.html',
         readme: './egg_swagger/README.md',
         path: 'egg_swagger/',
+      },
+      {
+        icon: '🟩',
+        name: 'Express 后端脚手架模板',
+        category: '后端服务',
+        desc: 'Node.js + Express 5 起步工程（ESM），分层架构 + Swagger 文档 + 统一响应 / 错误处理，内置内存 CRUD 演示与接口测试。',
+        tags: ['Node.js 18+', 'Express 5', 'Swagger', 'ESM', 'node:test'],
+        features: [
+          'router / controller / service 三层架构',
+          'Swagger 在线文档（/api/docs）+ OpenAPI 导出',
+          '统一响应 { code, message, data } + 全局错误处理',
+          '请求日志 / 跨域 / 静态资源 / 优雅关闭',
+        ],
+        commands: 'pnpm install\npnpm run dev   # 端口 7002\npnpm test     # 接口测试',
+        readme: './express-scaffolding-template/README.md',
+        path: 'express-scaffolding-template/',
+      },
+      {
+        icon: '🐢',
+        name: 'Koa 后端脚手架模板',
+        category: '后端服务',
+        desc: 'Node.js + Koa 3 起步工程（ESM），洋葱模型中间件 + 分层架构 + Swagger 文档，与 Express 版同款能力与演示。',
+        tags: ['Node.js 18+', 'Koa 3', '@koa/router', 'Swagger', 'ESM'],
+        features: [
+          '洋葱模型：errorHandler 最外层统一捕获异常',
+          'router / controller / service 三层架构',
+          'Swagger 在线文档（/api/docs）+ OpenAPI 导出',
+          '请求日志 / 跨域 / 静态资源 / 优雅关闭',
+        ],
+        commands: 'pnpm install\npnpm run dev   # 端口 7003\npnpm test     # 接口测试',
+        readme: './koa-scaffolding-template/README.md',
+        path: 'koa-scaffolding-template/',
+      },
+      {
+        icon: '🏯',
+        name: 'RuoYi Java 后端脚手架模板',
+        category: '后端服务',
+        desc: '若依 RuoYi 最新版 Java 后端（Spring Boot 2 + MyBatis + Spring Security），内置用户 / 权限 / 定时任务 / 代码生成全套后台能力。',
+        tags: ['Java 8', 'Spring Boot 2', 'MyBatis', 'Spring Security', 'Quartz'],
+        features: [
+          'RBAC 权限体系（用户 / 部门 / 角色 / 菜单 / 数据权限）',
+          '代码生成：业务表一键生成 CRUD 前后端代码',
+          'Quartz 定时任务 + Druid 连接池监控',
+          'sql 脚本开箱即用（MySQL 库 ry + Redis）',
+        ],
+        commands: '# 导入 sql/ 后修改数据源配置\nmvn clean install -DskipTests\nmvn spring-boot:run -pl ruoyi-admin   # 默认端口 80（建议改 8080）',
+        readme: './ruoyi-scaffolding-template/README.md',
+        path: 'ruoyi-scaffolding-template/',
+      },
+      {
+        icon: '🎏',
+        name: 'RuoYi Vue3 前端脚手架模板',
+        category: 'Web 前端',
+        desc: '若依 RuoYi-Vue3 最新版管理端前端（Vue3 + Element Plus），配套 RuoYi 后端的完整后台管理界面。',
+        tags: ['Vue 3', 'Element Plus', 'Vite', 'Pinia', 'RuoYi'],
+        features: [
+          '登录 / 权限 / 菜单 / 字典等完整管理端页面',
+          '动态路由 + 按钮级权限指令',
+          '与 RuoYi 后端开箱联调',
+          '代码生成器生成的 vue 页面直接落位',
+        ],
+        commands: 'pnpm install\npnpm dev   # 端口 80（/dev-api 代理后端 8080）\n# 需先启动 RuoYi 后端',
+        readme: './ruoyi-vue3-scaffolding-template/README.md',
+        path: 'ruoyi-vue3-scaffolding-template/',
       },
     ];
 
