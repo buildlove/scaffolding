@@ -1,0 +1,13 @@
+# 依赖安装采用扁平化 node_modules 结构（与 npm 一致）
+# uni-app 编译器解析第三方依赖不跟随符号链接，扁平结构可确保 pinia 等传递依赖被正确解析
+nodeLinker: hoisted
+allowBuilds:
+  esbuild: true
+  vue-demi: true
+  core-js: true
+  core-js-pure: true
+# pnpm 12 的配置迁移到本文件（package.json 的 pnpm 字段已不再读取）
+# pnpm 12 默认禁止依赖执行安装脚本，此处放行：
+# - esbuild：Vite 构建所需的平台二进制
+# - vue-demi：Pinia 依赖，安装时切换 Vue2/Vue3 代码
+# - core-js / core-js-pure：uni-app H5 端依赖的 polyfill 基础包
