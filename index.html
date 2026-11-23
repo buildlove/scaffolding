@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>脚手架模板集合</title>
+  <title>李洋的脚手架模板</title>
   <style>
     /* ==================== 全局主题变量（与 vue3-scaffolding-template 保持一致） ==================== */
     :root {
@@ -74,6 +74,24 @@
     .top-nav-subtitle {
       font-size: 12px;
       color: var(--app-text-secondary);
+    }
+
+    /* 顶部 GitHub 仓库链接按钮（margin-left:auto 推到导航栏右侧） */
+    .top-nav-github {
+      margin-left: auto;
+      padding: 7px 16px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #4f46e5, #3b82f6);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    /* 悬停反馈 */
+    .top-nav-github:hover {
+      opacity: 0.85;
     }
 
     /* ==================== 主体内容区 ==================== */
@@ -346,6 +364,8 @@
       <div class="top-nav-title">脚手架模板集合</div>
       <div class="top-nav-subtitle">Web · 多端 · 桌面 · 后端 全栈起步模板</div>
     </div>
+    <!-- GitHub 仓库地址：点击新窗口打开 -->
+    <a class="top-nav-github" href="https://github.com/buildlove/scaffolding" target="_blank" rel="noopener">GitHub 仓库</a>
   </header>
 
   <!-- 主体内容区 -->
