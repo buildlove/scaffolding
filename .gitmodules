@@ -1,0 +1,22 @@
+# ============================================================
+# 子模块仓库地址配置（.gitmodules）
+# ============================================================
+# 作用：为三个子模块占位（gitlink）补齐各自的真实 GitHub 仓库地址，
+#       修复 GitHub 网页上箭头目录点开 404 的问题。
+# 说明：
+#   - 本地目录 react19-scaffolding-template 对应远程仓库
+#     buildlove/react-scaffolding-template（名字不同，属正常映射）
+#   - url 使用 HTTPS 地址，GitHub 网页按此生成可点击的子模块链接
+# ============================================================
+
+[submodule "egg_swagger"]
+	path = egg_swagger
+	url = https://github.com/buildlove/egg_swagger.git
+
+[submodule "react19-scaffolding-template"]
+	path = react19-scaffolding-template
+	url = https://github.com/buildlove/react-scaffolding-template.git
+
+[submodule "vue3-scaffolding-template"]
+	path = vue3-scaffolding-template
+	url = https://github.com/buildlove/vue3-scaffolding-template.git
