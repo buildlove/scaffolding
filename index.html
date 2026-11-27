@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>脚手架模板集合</title>
+  <title>Scaffolding Templates</title>
   <style>
     /* ==================== 全局主题变量（与 vue3-scaffolding-template 保持一致） ==================== */
     :root {
@@ -65,6 +65,11 @@
       font-weight: 700;
     }
 
+    /* 导航文字区域：允许收缩，避免窄屏下把语言按钮挤出屏幕 */
+    .top-nav-text {
+      min-width: 0;
+    }
+
     .top-nav-title {
       font-size: 16px;
       font-weight: 600;
@@ -74,6 +79,37 @@
     .top-nav-subtitle {
       font-size: 12px;
       color: var(--app-text-secondary);
+      /* 窄屏时省略而不是撑破导航栏 */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 语言切换按钮：置顶右侧，胶囊样式 */
+    .lang-toggle {
+      margin-left: auto;
+      flex-shrink: 0;
+      padding: 6px 16px;
+      border: 1px solid #c7d2fe;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4f46e5;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .lang-toggle:hover {
+      background: #e0e7ff;
+      border-color: #a5b4fc;
+    }
+
+    .lang-toggle:focus-visible {
+      outline: 2px solid #4f46e5;
+      outline-offset: 2px;
     }
 
     /* ==================== 主体内容区 ==================== */
@@ -135,7 +171,8 @@
     /* ==================== 脚手架卡片网格（自适应列数） ==================== */
     .scaffold-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      /* min(360px, 100%)：窄屏时单列铺满，避免横向溢出 */
+      grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr));
       gap: 16px;
       align-items: stretch;
     }
@@ -240,7 +277,8 @@
     .code-block {
       position: relative;
       margin-top: auto;
-      padding: 12px 14px;
+      /* 右侧留出复制按钮的空间，避免长命令与按钮重叠 */
+      padding: 12px 64px 12px 14px;
       border-radius: 8px;
       background: #1f2937;
       color: #e5e7eb;
@@ -248,7 +286,8 @@
       font-size: 12px;
       line-height: 1.8;
       white-space: pre-wrap;
-      word-break: break-all;
+      /* 仅在没有断点时换行，避免英文单词被从中间截断 */
+      overflow-wrap: anywhere;
     }
 
     /* 复制按钮 */
@@ -309,7 +348,8 @@
       padding: 0;
       list-style: none;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      /* 同上：窄屏时单列铺满 */
+      grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
       gap: 10px 24px;
     }
 
@@ -336,32 +376,65 @@
       font-size: 12px;
       color: var(--app-text-secondary);
     }
+
+    /* ==================== 窄屏适配（手机端） ==================== */
+    @media (max-width: 480px) {
+      .top-nav {
+        padding: 0 14px;
+      }
+
+      .page-body {
+        padding: 14px 14px 36px;
+      }
+
+      .hero {
+        padding: 26px 20px;
+      }
+
+      .hero-title {
+        font-size: 22px;
+      }
+
+      .scaffold-card {
+        padding: 18px;
+      }
+
+      .conventions {
+        padding: 18px 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- 顶部导航栏：Logo + 集合名称 -->
+  <!-- 顶部导航栏：Logo + 集合名称 + 语言切换 -->
   <header class="top-nav">
     <div class="top-nav-logo">SF</div>
-    <div>
-      <div class="top-nav-title">脚手架模板集合</div>
-      <div class="top-nav-subtitle">Web · 多端 · 桌面 · 后端 全栈起步模板</div>
+    <div class="top-nav-text">
+      <div class="top-nav-title" data-i18n="navTitle">Scaffolding Templates</div>
+      <div class="top-nav-subtitle" data-i18n="navSubtitle">
+        Web · Cross-platform · Native · Desktop · Backend Starter Templates
+      </div>
     </div>
+    <!-- 语言切换：默认英文，按钮显示目标语言；点击在中文 / English 之间切换 -->
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to Chinese">中文</button>
   </header>
 
   <!-- 主体内容区 -->
   <main class="page-body">
     <!-- 欢迎横幅 -->
     <section class="hero">
-      <h1 class="hero-title">👋 开箱即用的脚手架模板集合</h1>
-      <p class="hero-desc">
-        本目录收录 10 套可直接作为新项目起步工程的脚手架模板，覆盖 Web 前端、多端应用、
-        移动应用、桌面客户端与后端服务。各模板首页风格与 README 结构保持统一，clone 后安装依赖即可运行。
+      <h1 class="hero-title" data-i18n="heroTitle">👋 Ready-to-use Scaffolding Templates</h1>
+      <p class="hero-desc" data-i18n="heroDesc">
+        This collection ships 11 starters for new projects, covering web frontends, cross-platform apps,
+        native apps, mobile apps, desktop clients and backend services. Every template keeps the same
+        home-page style and README structure — clone, install dependencies and run.
       </p>
       <div class="hero-tags">
         <span class="hero-tag">Vue 3</span>
         <span class="hero-tag">React 19</span>
         <span class="hero-tag">uni-app 3</span>
         <span class="hero-tag">React Native</span>
+        <span class="hero-tag">Kotlin / Compose</span>
         <span class="hero-tag">Electron</span>
         <span class="hero-tag">Node.js</span>
         <span class="hero-tag">Express</span>
@@ -374,204 +447,461 @@
 
     <!-- 脚手架卡片列表 -->
     <section>
-      <h2 class="section-title">脚手架一览（10 个）</h2>
+      <h2 class="section-title" data-i18n="sectionTitle">Scaffold Collection (11)</h2>
       <!-- 卡片由下方脚本按数据渲染，新增脚手架只需在 SCAFFOLDS 数组追加一项 -->
       <div class="scaffold-grid" id="scaffoldGrid"></div>
     </section>
 
     <!-- 家族约定说明 -->
     <section class="conventions">
-      <h2 class="section-title">模板家族约定</h2>
+      <h2 class="section-title" data-i18n="conventionsTitle">Template Family Conventions</h2>
       <ul class="conventions-list">
-        <li class="conventions-item">前端三套模板首页风格统一（渐变横幅 + 技术栈卡片 + 功能演示）</li>
-        <li class="conventions-item">README 结构统一：核心版本 → 快速开始 → 目录结构 → 基本引入 → 常用配置</li>
-        <li class="conventions-item">包管理器推荐 pnpm，Node.js ≥ 16（推荐 18 / 20 / 22，RN 模板需 ≥ 22.11）</li>
-        <li class="conventions-item">开发端口约定：Vue3 / uni-app 5005、React 3000、Egg.js 7001、Express 7002、Koa 7003、RN Metro 8081、RuoYi 前端 80 / 后端 8080（默认 80）</li>
-        <li class="conventions-item">前端请求域名统一由 .env 的 VITE_TINTMCE_BASE_URL 注入；后端统一响应 { code, message, data }</li>
-        <li class="conventions-item">国内网络已内置 npmmirror 镜像（electron 二进制 / 打包工具）</li>
+        <li class="conventions-item" data-i18n="conv1">
+          Frontend / mobile templates share the same home-page style (gradient banner + tech-stack cards + feature demos)
+        </li>
+        <li class="conventions-item" data-i18n="conv2">
+          READMEs follow a unified structure: core versions → quick start → directory structure → key imports → common config
+        </li>
+        <li class="conventions-item" data-i18n="conv3">
+          pnpm is the recommended package manager, Node.js ≥ 16 (18 / 20 / 22 recommended; the RN template needs ≥ 22.11);
+          the Android template uses its bundled Gradle Wrapper
+        </li>
+        <li class="conventions-item" data-i18n="conv4">
+          Dev port convention: Vue3 / uni-app 5005, React 3000, Egg.js 7001, Express 7002, Koa 7003, RN Metro 8081,
+          RuoYi frontend 80 / backend 8080 (default 80); native Android ships an installable APK, so no dev port
+        </li>
+        <li class="conventions-item" data-i18n="conv5">
+          Android template: compileSdk 37.2 / targetSdk 37 / minSdk 26 (Android 8.0+); dependency versions are
+          managed in gradle/libs.versions.toml
+        </li>
+        <li class="conventions-item" data-i18n="conv6">
+          Frontend request base URLs are injected via VITE_TINTMCE_BASE_URL in .env; backends share the
+          { code, message, data } response shape
+        </li>
+        <li class="conventions-item" data-i18n="conv7">
+          npmmirror mirrors are preconfigured for networks in China (electron binaries / packaging tools)
+        </li>
       </ul>
     </section>
 
     <!-- 页脚 -->
-    <footer class="footer">脚手架模板集合 · 双击本文件即可在浏览器中查看</footer>
+    <footer class="footer" data-i18n="footer">
+      Scaffolding Templates · Double-click this file to open it in your browser
+    </footer>
   </main>
 
   <script>
     /* ==================== 脚手架数据源 ====================
-     * 新增脚手架时只需在数组中追加一个对象，卡片自动渲染。
+     * 新增脚手架时在数组中追加一个对象，卡片自动渲染（中英文各一份文案）。
      * 字段说明：
      *   icon      卡片图标（emoji）
-     *   name      脚手架名称
-     *   category  类别徽标（Web / 多端 / 桌面 / 后端）
-     *   desc      一句话定位
-     *   tags      技术栈标签数组
-     *   features  核心能力数组
-     *   commands  快速开始命令（多行文本，\n 换行）
+     *   name      脚手架名称 { en, zh }
+     *   category  类别徽标 { en, zh }
+     *   desc      一句话定位 { en, zh }
+     *   tags      技术栈标签数组（技术名词中英文一致）
+     *   features  核心能力数组 { en, zh }
+     *   commands  快速开始命令 { en, zh }（多行文本，\n 换行）
      *   readme    README 相对链接
      *   path      本地目录名（展示与提示用）
      * ================================================================ */
     const SCAFFOLDS = [
       {
         icon: '💚',
-        name: 'Vue3 脚手架模板',
-        category: 'Web 前端',
-        desc: 'Vue3.5 + Vite 起步工程，覆盖嵌套路由、状态管理、请求封装等常用能力，可直接作为新 Web 项目的起步模板。',
+        name: { en: 'Vue3 Scaffolding Template', zh: 'Vue3 脚手架模板' },
+        category: { en: 'Web Frontend', zh: 'Web 前端' },
+        desc: {
+          en: 'A Vue 3.5 + Vite starter covering nested routing, state management and request encapsulation — ready to use as the foundation of a new web project.',
+          zh: 'Vue3.5 + Vite 起步工程，覆盖嵌套路由、状态管理、请求封装等常用能力，可直接作为新 Web 项目的起步模板。',
+        },
         tags: ['Vue 3.5', 'Vite 4', 'Pinia', 'Vue Router 4', 'Element Plus', 'Axios'],
-        features: [
-          '首页演示：Pinia 计数器 / 路由节点分页联动',
-          '嵌套路由 + 二级侧边菜单 + 动态浏览器标题',
-          'Axios 统一封装（拦截器 + 统一错误提示）',
-          'Element Plus 按需自动引入（中文语言包）',
-        ],
-        commands: 'pnpm install\npnpm run dev   # 端口 5005',
+        features: {
+          en: [
+            'Home demo: Pinia counter / route-node pagination in sync',
+            'Nested routes + secondary side menu + dynamic browser title',
+            'Unified Axios wrapper (interceptors + unified error prompts)',
+            'Element Plus on-demand auto import (Chinese locale)',
+          ],
+          zh: [
+            '首页演示：Pinia 计数器 / 路由节点分页联动',
+            '嵌套路由 + 二级侧边菜单 + 动态浏览器标题',
+            'Axios 统一封装（拦截器 + 统一错误提示）',
+            'Element Plus 按需自动引入（中文语言包）',
+          ],
+        },
+        commands: {
+          en: 'pnpm install\npnpm run dev   # port 5005',
+          zh: 'pnpm install\npnpm run dev   # 端口 5005',
+        },
         readme: './vue3-scaffolding-template/README.md',
         path: 'vue3-scaffolding-template/',
       },
       {
         icon: '⚛️',
-        name: 'React19 脚手架模板',
-        category: 'Web 前端',
-        desc: '与 Vue3 版同款演示的 React 起步工程（已升级 React 19），风格功能与 vue3-scaffolding-template 保持一致。',
+        name: { en: 'React19 Scaffolding Template', zh: 'React19 脚手架模板' },
+        category: { en: 'Web Frontend', zh: 'Web 前端' },
+        desc: {
+          en: 'A React starter with the same demos as the Vue3 version (upgraded to React 19), consistent in style and features with vue3-scaffolding-template.',
+          zh: '与 Vue3 版同款演示的 React 起步工程（已升级 React 19），风格功能与 vue3-scaffolding-template 保持一致。',
+        },
         tags: ['React 19', 'React Router 6', 'Zustand', 'Ant Design', 'CRA + rewired'],
-        features: [
-          '首页演示与 Vue3 版逐项对齐（横幅 / 技术栈 / 功能演示）',
-          'Hash 嵌套路由 + 菜单精确联动高亮',
-          'Zustand 状态管理（state / 派生值 / actions 范例）',
-          'Axios 统一封装 + Ant Design 中文语言包',
-        ],
-        commands: 'pnpm install\npnpm start   # 端口 3000',
+        features: {
+          en: [
+            'Home demo aligned item by item with the Vue3 version (banner / tech stack / demos)',
+            'Hash nested routing + precise menu highlight sync',
+            'Zustand state management (state / derived values / actions examples)',
+            'Unified Axios wrapper + Ant Design Chinese locale',
+          ],
+          zh: [
+            '首页演示与 Vue3 版逐项对齐（横幅 / 技术栈 / 功能演示）',
+            'Hash 嵌套路由 + 菜单精确联动高亮',
+            'Zustand 状态管理（state / 派生值 / actions 范例）',
+            'Axios 统一封装 + Ant Design 中文语言包',
+          ],
+        },
+        commands: {
+          en: 'pnpm install\npnpm start   # port 3000',
+          zh: 'pnpm install\npnpm start   # 端口 3000',
+        },
         readme: './react19-scaffolding-template/README.md',
         path: 'react19-scaffolding-template/',
       },
       {
         icon: '📱',
-        name: 'uni-app Vue3 脚手架模板',
-        category: '多端应用',
-        desc: 'uni-app 3 + Vue3.5 多端起步工程，一套代码可发布到 H5、微信小程序与 App，首页视觉与 Vue3 版保持一致。',
+        name: { en: 'uni-app Vue3 Scaffolding Template', zh: 'uni-app Vue3 脚手架模板' },
+        category: { en: 'Cross-platform', zh: '多端应用' },
+        desc: {
+          en: 'uni-app 3 + Vue 3.5 multi-platform starter: one codebase publishes to H5, WeChat Mini Program and App, with the same home-page look as the Vue3 version.',
+          zh: 'uni-app 3 + Vue3.5 多端起步工程，一套代码可发布到 H5、微信小程序与 App，首页视觉与 Vue3 版保持一致。',
+        },
         tags: ['uni-app 3', 'Vue 3.5', 'Vite 5', 'Pinia', 'Less'],
-        features: [
-          '一套代码多端发布（H5 / 微信小程序 / App）',
-          '页面路由（pages.json）+ Pinia + 请求封装同款能力',
-          '公共组件 easycom 自动引入（顶部导航 / 卡片容器）',
-          '扁平化 node_modules 配置，兼容 pinia 4 依赖解析',
-        ],
-        commands: 'pnpm install\npnpm run dev:h5         # H5，端口 5005\npnpm run dev:mp-weixin # 微信小程序',
+        features: {
+          en: [
+            'One codebase, multiple platforms (H5 / WeChat Mini Program / App)',
+            'Page routing (pages.json) + Pinia + request wrapper, same capabilities',
+            'easycom auto-import for shared components (top nav / card container)',
+            'Flattened node_modules config compatible with pinia 4 dependency resolution',
+          ],
+          zh: [
+            '一套代码多端发布（H5 / 微信小程序 / App）',
+            '页面路由（pages.json）+ Pinia + 请求封装同款能力',
+            '公共组件 easycom 自动引入（顶部导航 / 卡片容器）',
+            '扁平化 node_modules 配置，兼容 pinia 4 依赖解析',
+          ],
+        },
+        commands: {
+          en: 'pnpm install\npnpm run dev:h5          # H5, port 5005\npnpm run dev:mp-weixin   # WeChat Mini Program',
+          zh: 'pnpm install\npnpm run dev:h5         # H5，端口 5005\npnpm run dev:mp-weixin # 微信小程序',
+        },
         readme: './uniapp-vue3-scaffolding-template/README.md',
         path: 'uniapp-vue3-scaffolding-template/',
       },
       {
         icon: '📲',
-        name: 'React Native 脚手架模板',
-        category: '移动应用',
-        desc: 'React Native 0.88 + React 19 + TypeScript 起步工程，内置原生导航栈与 Zustand 状态管理，一套代码发布 iOS / Android。',
+        name: { en: 'React Native Scaffolding Template', zh: 'React Native 脚手架模板' },
+        category: { en: 'Mobile App', zh: '移动应用' },
+        desc: {
+          en: 'React Native 0.88 + React 19 + TypeScript starter with a native navigation stack and Zustand state management; one codebase for iOS and Android.',
+          zh: 'React Native 0.88 + React 19 + TypeScript 起步工程，内置原生导航栈与 Zustand 状态管理，一套代码发布 iOS / Android。',
+        },
         tags: ['React Native 0.88', 'React 19', 'TypeScript', 'React Navigation 7', 'Zustand'],
-        features: [
-          '原生导航栈（native-stack）+ 安全区适配',
-          'Zustand 状态管理（对齐 Pinia 计数器演示）',
-          '家族同款首页演示（横幅 / 技术栈 / 功能演示）',
-          'Jest 测试 + Metro 打包验证通过',
-        ],
-        commands: 'pnpm install\npnpm ios       # 或 pnpm android\npnpm start    # Metro 端口 8081',
+        features: {
+          en: [
+            'Native stack navigation + safe-area handling (notch / home indicator)',
+            'Zustand store (matching the Pinia counter demo)',
+            'Family-style home demo (banner / tech stack / feature demos)',
+            'Jest tests + verified Metro bundling',
+          ],
+          zh: [
+            '原生导航栈（native-stack）+ 安全区适配',
+            'Zustand 状态管理（对齐 Pinia 计数器演示）',
+            '家族同款首页演示（横幅 / 技术栈 / 功能演示）',
+            'Jest 测试 + Metro 打包验证通过',
+          ],
+        },
+        commands: {
+          en: 'pnpm install\npnpm ios       # or pnpm android\npnpm start    # Metro port 8081',
+          zh: 'pnpm install\npnpm ios       # 或 pnpm android\npnpm start    # Metro 端口 8081',
+        },
         readme: './react-native-scaffolding-template/README.md',
         path: 'react-native-scaffolding-template/',
       },
       {
+        icon: '🤖',
+        name: { en: 'Android Native Scaffolding Template', zh: 'Android 原生脚手架模板' },
+        category: { en: 'Native App', zh: '原生应用' },
+        desc: {
+          en: 'Kotlin + Jetpack Compose native starter (single Activity) with bottom navigation, nested routing, state management and a Retrofit network layer.',
+          zh: 'Kotlin + Jetpack Compose 原生起步工程（单 Activity），内置底部导航、嵌套路由、状态管理与 Retrofit 网络层。',
+        },
+        tags: ['Kotlin 2.2', 'Jetpack Compose', 'Material 3', 'Navigation', 'Retrofit 3'],
+        features: {
+          en: [
+            'Single Activity + Compose, bottom nav + nested detail routes',
+            'ViewModel + StateFlow unidirectional data flow demo',
+            'Retrofit + OkHttp + kotlinx.serialization network layer',
+            'Material 3 light / dark themes + JVM unit tests',
+          ],
+          zh: [
+            '单 Activity + Compose，底部导航 + 嵌套详情路由',
+            'ViewModel + StateFlow 单向数据流演示',
+            'Retrofit + OkHttp + kotlinx.serialization 网络层',
+            'Material 3 亮 / 暗色主题 + JVM 单元测试',
+          ],
+        },
+        commands: {
+          en: './gradlew assembleDebug   # build debug APK\n./gradlew installDebug    # install on a device\n# or open the project in Android Studio and run',
+          zh: './gradlew assembleDebug   # 构建 Debug APK\n./gradlew installDebug    # 安装到设备\n# 也可用 Android Studio 打开工程直接运行',
+        },
+        readme: './android-scaffolding-template/README.md',
+        path: 'android-scaffolding-template/',
+      },
+      {
         icon: '🖥️',
-        name: 'Electron 脚手架模板',
-        category: '桌面客户端',
-        desc: 'Electron + electron-vite 三进程起步工程，渲染层与 Vue3 版完全同款，一键打包 macOS / Windows / Linux 安装包。',
+        name: { en: 'Electron Scaffolding Template', zh: 'Electron 脚手架模板' },
+        category: { en: 'Desktop Client', zh: '桌面客户端' },
+        desc: {
+          en: 'Electron + electron-vite three-process starter whose renderer matches the Vue3 version exactly; package macOS / Windows / Linux installers with one command.',
+          zh: 'Electron + electron-vite 三进程起步工程，渲染层与 Vue3 版完全同款，一键打包 macOS / Windows / Linux 安装包。',
+        },
         tags: ['Electron 43', 'electron-vite 6', 'Vue 3.5', 'Pinia', 'Element Plus'],
-        features: [
-          '主进程 / 预加载 / 渲染进程三段式结构（安全桥接示例）',
-          '渲染层复用 Vue3 模板全部页面（首页完全同款）',
-          'electron-builder 打包（dmg / nsis / AppImage）',
-          '内置 npmmirror 镜像，国内网络开箱即用',
-        ],
-        commands: 'pnpm install\npnpm run dev        # 启动桌面窗口\npnpm run build:mac # 打包 dmg',
+        features: {
+          en: [
+            'Main / preload / renderer three-part structure (secure bridge example)',
+            'Renderer reuses every page from the Vue3 template (identical home page)',
+            'electron-builder packaging (dmg / nsis / AppImage)',
+            'Built-in npmmirror mirrors for networks in China',
+          ],
+          zh: [
+            '主进程 / 预加载 / 渲染进程三段式结构（安全桥接示例）',
+            '渲染层复用 Vue3 模板全部页面（首页完全同款）',
+            'electron-builder 打包（dmg / nsis / AppImage）',
+            '内置 npmmirror 镜像，国内网络开箱即用',
+          ],
+        },
+        commands: {
+          en: 'pnpm install\npnpm run dev        # launch the desktop window\npnpm run build:mac  # build dmg',
+          zh: 'pnpm install\npnpm run dev        # 启动桌面窗口\npnpm run build:mac # 打包 dmg',
+        },
         readme: './electron-scaffolding-template/README.md',
         path: 'electron-scaffolding-template/',
       },
       {
         icon: '🥚',
-        name: 'Egg Swagger 后端模板',
-        category: '后端服务',
-        desc: 'Egg.js 2 + Swagger 起步工程，内置 MySQL、跨域与定时任务能力，自动生成在线 API 文档。',
+        name: { en: 'Egg Swagger Backend Template', zh: 'Egg Swagger 后端模板' },
+        category: { en: 'Backend Service', zh: '后端服务' },
+        desc: {
+          en: 'Egg.js 2 + Swagger starter with MySQL, CORS and scheduled tasks built in; generates online API documentation automatically.',
+          zh: 'Egg.js 2 + Swagger 起步工程，内置 MySQL、跨域与定时任务能力，自动生成在线 API 文档。',
+        },
         tags: ['Egg.js 2', 'egg-swagger2', 'egg-mysql', 'egg-cors', 'mysql_help'],
-        features: [
-          'Swagger 在线 API 文档自动生成（/api/swagger/index.html）',
-          'controller / service / router 分层 + definitions 模型定义',
-          'egg-mysql + mysql_help 数据库访问封装',
-          '定时任务（schedule）与中间件（middleware）示例',
-        ],
-        commands: 'npm i\nnpm run dev   # 端口 7001\n# Swagger: http://127.0.0.1:7001/api/swagger/index.html',
+        features: {
+          en: [
+            'Auto-generated Swagger API docs (/api/swagger/index.html)',
+            'controller / service / router layers + definitions models',
+            'egg-mysql + mysql_help database access wrapper',
+            'Scheduled tasks (schedule) and middleware examples',
+          ],
+          zh: [
+            'Swagger 在线 API 文档自动生成（/api/swagger/index.html）',
+            'controller / service / router 分层 + definitions 模型定义',
+            'egg-mysql + mysql_help 数据库访问封装',
+            '定时任务（schedule）与中间件（middleware）示例',
+          ],
+        },
+        commands: {
+          en: 'npm i\nnpm run dev   # port 7001\n# Swagger: http://127.0.0.1:7001/api/swagger/index.html',
+          zh: 'npm i\nnpm run dev   # 端口 7001\n# Swagger: http://127.0.0.1:7001/api/swagger/index.html',
+        },
         readme: './egg_swagger/README.md',
         path: 'egg_swagger/',
       },
       {
         icon: '🟩',
-        name: 'Express 后端脚手架模板',
-        category: '后端服务',
-        desc: 'Node.js + Express 5 起步工程（ESM），分层架构 + Swagger 文档 + 统一响应 / 错误处理，内置内存 CRUD 演示与接口测试。',
+        name: { en: 'Express Backend Scaffolding Template', zh: 'Express 后端脚手架模板' },
+        category: { en: 'Backend Service', zh: '后端服务' },
+        desc: {
+          en: 'Node.js + Express 5 starter (ESM) with layered architecture, Swagger docs and unified responses / error handling, plus in-memory CRUD demos and API tests.',
+          zh: 'Node.js + Express 5 起步工程（ESM），分层架构 + Swagger 文档 + 统一响应 / 错误处理，内置内存 CRUD 演示与接口测试。',
+        },
         tags: ['Node.js 18+', 'Express 5', 'Swagger', 'ESM', 'node:test'],
-        features: [
-          'router / controller / service 三层架构',
-          'Swagger 在线文档（/api/docs）+ OpenAPI 导出',
-          '统一响应 { code, message, data } + 全局错误处理',
-          '请求日志 / 跨域 / 静态资源 / 优雅关闭',
-        ],
-        commands: 'pnpm install\npnpm run dev   # 端口 7002\npnpm test     # 接口测试',
+        features: {
+          en: [
+            'router / controller / service three-layer architecture',
+            'Swagger docs (/api/docs) + OpenAPI export',
+            'Unified response { code, message, data } + global error handling',
+            'Request logging / CORS / static files / graceful shutdown',
+          ],
+          zh: [
+            'router / controller / service 三层架构',
+            'Swagger 在线文档（/api/docs）+ OpenAPI 导出',
+            '统一响应 { code, message, data } + 全局错误处理',
+            '请求日志 / 跨域 / 静态资源 / 优雅关闭',
+          ],
+        },
+        commands: {
+          en: 'pnpm install\npnpm run dev   # port 7002\npnpm test      # API tests',
+          zh: 'pnpm install\npnpm run dev   # 端口 7002\npnpm test     # 接口测试',
+        },
         readme: './express-scaffolding-template/README.md',
         path: 'express-scaffolding-template/',
       },
       {
         icon: '🐢',
-        name: 'Koa 后端脚手架模板',
-        category: '后端服务',
-        desc: 'Node.js + Koa 3 起步工程（ESM），洋葱模型中间件 + 分层架构 + Swagger 文档，与 Express 版同款能力与演示。',
+        name: { en: 'Koa Backend Scaffolding Template', zh: 'Koa 后端脚手架模板' },
+        category: { en: 'Backend Service', zh: '后端服务' },
+        desc: {
+          en: 'Node.js + Koa 3 starter (ESM) with onion-model middleware, layered architecture and Swagger docs — same capabilities and demos as the Express version.',
+          zh: 'Node.js + Koa 3 起步工程（ESM），洋葱模型中间件 + 分层架构 + Swagger 文档，与 Express 版同款能力与演示。',
+        },
         tags: ['Node.js 18+', 'Koa 3', '@koa/router', 'Swagger', 'ESM'],
-        features: [
-          '洋葱模型：errorHandler 最外层统一捕获异常',
-          'router / controller / service 三层架构',
-          'Swagger 在线文档（/api/docs）+ OpenAPI 导出',
-          '请求日志 / 跨域 / 静态资源 / 优雅关闭',
-        ],
-        commands: 'pnpm install\npnpm run dev   # 端口 7003\npnpm test     # 接口测试',
+        features: {
+          en: [
+            'Onion model: the outermost errorHandler catches downstream errors',
+            'router / controller / service three-layer architecture',
+            'Swagger docs (/api/docs) + OpenAPI export',
+            'Request logging / CORS / static files / graceful shutdown',
+          ],
+          zh: [
+            '洋葱模型：errorHandler 最外层统一捕获异常',
+            'router / controller / service 三层架构',
+            'Swagger 在线文档（/api/docs）+ OpenAPI 导出',
+            '请求日志 / 跨域 / 静态资源 / 优雅关闭',
+          ],
+        },
+        commands: {
+          en: 'pnpm install\npnpm run dev   # port 7003\npnpm test      # API tests',
+          zh: 'pnpm install\npnpm run dev   # 端口 7003\npnpm test     # 接口测试',
+        },
         readme: './koa-scaffolding-template/README.md',
         path: 'koa-scaffolding-template/',
       },
       {
         icon: '🏯',
-        name: 'RuoYi Java 后端脚手架模板',
-        category: '后端服务',
-        desc: '若依 RuoYi 最新版 Java 后端（Spring Boot 2 + MyBatis + Spring Security），内置用户 / 权限 / 定时任务 / 代码生成全套后台能力。',
+        name: { en: 'RuoYi Java Backend Scaffolding Template', zh: 'RuoYi Java 后端脚手架模板' },
+        category: { en: 'Backend Service', zh: '后端服务' },
+        desc: {
+          en: 'RuoYi latest Java backend (Spring Boot 2 + MyBatis + Spring Security) with the full admin feature set: users / permissions / scheduled tasks / code generation.',
+          zh: '若依 RuoYi 最新版 Java 后端（Spring Boot 2 + MyBatis + Spring Security），内置用户 / 权限 / 定时任务 / 代码生成全套后台能力。',
+        },
         tags: ['Java 8', 'Spring Boot 2', 'MyBatis', 'Spring Security', 'Quartz'],
-        features: [
-          'RBAC 权限体系（用户 / 部门 / 角色 / 菜单 / 数据权限）',
-          '代码生成：业务表一键生成 CRUD 前后端代码',
-          'Quartz 定时任务 + Druid 连接池监控',
-          'sql 脚本开箱即用（MySQL 库 ry + Redis）',
-        ],
-        commands: '# 导入 sql/ 后修改数据源配置\nmvn clean install -DskipTests\nmvn spring-boot:run -pl ruoyi-admin   # 默认端口 80（建议改 8080）',
+        features: {
+          en: [
+            'RBAC permission system (users / departments / roles / menus / data scope)',
+            'Code generator: one-click CRUD code for business tables',
+            'Quartz scheduled jobs + Druid connection pool monitoring',
+            'SQL scripts ready to run (MySQL database ry + Redis)',
+          ],
+          zh: [
+            'RBAC 权限体系（用户 / 部门 / 角色 / 菜单 / 数据权限）',
+            '代码生成：业务表一键生成 CRUD 前后端代码',
+            'Quartz 定时任务 + Druid 连接池监控',
+            'sql 脚本开箱即用（MySQL 库 ry + Redis）',
+          ],
+        },
+        commands: {
+          en: '# Import the sql/ scripts and edit the datasource first\nmvn clean install -DskipTests\nmvn spring-boot:run -pl ruoyi-admin   # default port 80 (8080 recommended)',
+          zh: '# 导入 sql/ 后修改数据源配置\nmvn clean install -DskipTests\nmvn spring-boot:run -pl ruoyi-admin   # 默认端口 80（建议改 8080）',
+        },
         readme: './ruoyi-scaffolding-template/README.md',
         path: 'ruoyi-scaffolding-template/',
       },
       {
         icon: '🎏',
-        name: 'RuoYi Vue3 前端脚手架模板',
-        category: 'Web 前端',
-        desc: '若依 RuoYi-Vue3 最新版管理端前端（Vue3 + Element Plus），配套 RuoYi 后端的完整后台管理界面。',
+        name: { en: 'RuoYi Vue3 Frontend Scaffolding Template', zh: 'RuoYi Vue3 前端脚手架模板' },
+        category: { en: 'Web Frontend', zh: 'Web 前端' },
+        desc: {
+          en: 'RuoYi-Vue3 latest admin frontend (Vue3 + Element Plus), providing the complete admin UI for the RuoYi backend.',
+          zh: '若依 RuoYi-Vue3 最新版管理端前端（Vue3 + Element Plus），配套 RuoYi 后端的完整后台管理界面。',
+        },
         tags: ['Vue 3', 'Element Plus', 'Vite', 'Pinia', 'RuoYi'],
-        features: [
-          '登录 / 权限 / 菜单 / 字典等完整管理端页面',
-          '动态路由 + 按钮级权限指令',
-          '与 RuoYi 后端开箱联调',
-          '代码生成器生成的 vue 页面直接落位',
-        ],
-        commands: 'pnpm install\npnpm dev   # 端口 80（/dev-api 代理后端 8080）\n# 需先启动 RuoYi 后端',
+        features: {
+          en: [
+            'Complete login / permission / menu / dictionary / scheduled-job pages',
+            'Dynamic routes + button-level permission directive',
+            'Works with the RuoYi backend out of the box',
+            'Pages generated by the code generator drop right in',
+          ],
+          zh: [
+            '登录 / 权限 / 菜单 / 字典等完整管理端页面',
+            '动态路由 + 按钮级权限指令',
+            '与 RuoYi 后端开箱联调',
+            '代码生成器生成的 vue 页面直接落位',
+          ],
+        },
+        commands: {
+          en: 'pnpm install\npnpm dev   # port 80 (/dev-api proxies to backend 8080)\n# start the RuoYi backend first',
+          zh: 'pnpm install\npnpm dev   # 端口 80（/dev-api 代理后端 8080）\n# 需先启动 RuoYi 后端',
+        },
         readme: './ruoyi-vue3-scaffolding-template/README.md',
         path: 'ruoyi-vue3-scaffolding-template/',
       },
     ];
+
+    /* ==================== 页面静态文案（中英双语） ====================
+     * 说明：
+     *   - 页面默认英文，点击顶部按钮切换中文 / English
+     *   - 静态元素通过 data-i18n="键名" 与下方文案表对应
+     * ================================================================ */
+    const I18N = {
+      en: {
+        pageTitle: 'Scaffolding Templates',
+        navTitle: 'Scaffolding Templates',
+        navSubtitle: 'Web · Cross-platform · Native · Desktop · Backend Starter Templates',
+        heroTitle: '👋 Ready-to-use Scaffolding Templates',
+        heroDesc:
+          'This collection ships 11 starters for new projects, covering web frontends, cross-platform apps, native apps, mobile apps, desktop clients and backend services. Every template keeps the same home-page style and README structure — clone, install dependencies and run.',
+        sectionTitle: 'Scaffold Collection (11)',
+        conventionsTitle: 'Template Family Conventions',
+        conv1:
+          'Frontend / mobile templates share the same home-page style (gradient banner + tech-stack cards + feature demos)',
+        conv2:
+          'READMEs follow a unified structure: core versions → quick start → directory structure → key imports → common config',
+        conv3:
+          'pnpm is the recommended package manager, Node.js ≥ 16 (18 / 20 / 22 recommended; the RN template needs ≥ 22.11); the Android template uses its bundled Gradle Wrapper',
+        conv4:
+          'Dev port convention: Vue3 / uni-app 5005, React 3000, Egg.js 7001, Express 7002, Koa 7003, RN Metro 8081, RuoYi frontend 80 / backend 8080 (default 80); native Android ships an installable APK, so no dev port',
+        conv5:
+          'Android template: compileSdk 37.2 / targetSdk 37 / minSdk 26 (Android 8.0+); dependency versions are managed in gradle/libs.versions.toml',
+        conv6:
+          'Frontend request base URLs are injected via VITE_TINTMCE_BASE_URL in .env; backends share the { code, message, data } response shape',
+        conv7: 'npmmirror mirrors are preconfigured for networks in China (electron binaries / packaging tools)',
+        footer: 'Scaffolding Templates · Double-click this file to open it in your browser',
+        copy: 'Copy',
+        copied: 'Copied',
+        copyFailed: 'Copy failed',
+        viewReadme: 'View README →',
+        openReadme: 'Open README documentation',
+      },
+      zh: {
+        pageTitle: '脚手架模板集合',
+        navTitle: '脚手架模板集合',
+        navSubtitle: 'Web · 多端 · 原生 · 桌面 · 后端 全栈起步模板',
+        heroTitle: '👋 开箱即用的脚手架模板集合',
+        heroDesc:
+          '本目录收录 11 套可直接作为新项目起步工程的脚手架模板，覆盖 Web 前端、多端应用、原生应用、移动应用、桌面客户端与后端服务。各模板首页风格与 README 结构保持统一，clone 后安装依赖即可运行。',
+        sectionTitle: '脚手架一览（11 个）',
+        conventionsTitle: '模板家族约定',
+        conv1: '前端 / 移动端模板首页风格统一（渐变横幅 + 技术栈卡片 + 功能演示）',
+        conv2: 'README 结构统一：核心版本 → 快速开始 → 目录结构 → 基本引入 → 常用配置',
+        conv3:
+          '包管理器推荐 pnpm，Node.js ≥ 16（推荐 18 / 20 / 22，RN 模板需 ≥ 22.11）；Android 模板使用工程内置 Gradle Wrapper',
+        conv4:
+          '开发端口约定：Vue3 / uni-app 5005、React 3000、Egg.js 7001、Express 7002、Koa 7003、RN Metro 8081、RuoYi 前端 80 / 后端 8080（默认 80）；Android 原生为设备安装包，无开发端口',
+        conv5:
+          'Android 模板约定：compileSdk 37.2 / targetSdk 37、minSdk 26（Android 8.0+），依赖版本统一写在 gradle/libs.versions.toml',
+        conv6: '前端请求域名统一由 .env 的 VITE_TINTMCE_BASE_URL 注入；后端统一响应 { code, message, data }',
+        conv7: '国内网络已内置 npmmirror 镜像（electron 二进制 / 打包工具）',
+        footer: '脚手架模板集合 · 双击本文件即可在浏览器中查看',
+        copy: '复制',
+        copied: '已复制',
+        copyFailed: '复制失败',
+        viewReadme: '查看 README →',
+        openReadme: '打开 README 文档',
+      },
+    };
+
+    // 当前语言：默认英文（与 HTML 初始文案一致，避免首屏闪动）
+    let currentLang = 'en';
 
     /**
      * 将纯文本中的特殊字符转义为 HTML 实体，防止内容破坏页面结构
@@ -587,32 +917,38 @@
 
     /**
      * 渲染单个脚手架卡片的 HTML
-     * @param {Object} item 脚手架数据对象
+     * @param {Object} item 脚手架数据对象（含 { en, zh } 双语字段）
      * @returns {string} 卡片 HTML 字符串
      */
     const renderCard = (item) => {
-      // 技术栈标签
+      // 当前语言的静态标签（复制 / 查看 README 等）
+      const t = I18N[currentLang];
+      const lang = currentLang;
+
+      // 技术栈标签（技术名词中英文一致）
       const tagsHtml = item.tags
         .map((tag) => `<span class="scaffold-tag">${escapeHtml(tag)}</span>`)
         .join('');
-      // 核心能力列表
-      const featuresHtml = item.features
+      // 核心能力列表：按当前语言取数组
+      const featuresHtml = item.features[lang]
         .map((feature) => `<li class="scaffold-feature">${escapeHtml(feature)}</li>`)
         .join('');
+      // 当前语言的快速开始命令
+      const commands = item.commands[lang];
 
       return `
         <article class="scaffold-card">
           <div class="scaffold-head">
             <div class="scaffold-icon">${item.icon}</div>
-            <div class="scaffold-name">${escapeHtml(item.name)}</div>
-            <div class="scaffold-category">${escapeHtml(item.category)}</div>
+            <div class="scaffold-name">${escapeHtml(item.name[lang])}</div>
+            <div class="scaffold-category">${escapeHtml(item.category[lang])}</div>
           </div>
-          <p class="scaffold-desc">${escapeHtml(item.desc)}</p>
+          <p class="scaffold-desc">${escapeHtml(item.desc[lang])}</p>
           <div class="scaffold-tags">${tagsHtml}</div>
           <ul class="scaffold-features">${featuresHtml}</ul>
-          <div class="code-block"><button class="copy-btn" data-commands="${escapeHtml(item.commands)}">复制</button>${escapeHtml(item.commands)}</div>
+          <div class="code-block"><button class="copy-btn" data-commands="${escapeHtml(commands)}">${escapeHtml(t.copy)}</button>${escapeHtml(commands)}</div>
           <div class="scaffold-links">
-            <a class="scaffold-link" href="${escapeHtml(item.readme)}" title="打开 README 文档">查看 README →</a>
+            <a class="scaffold-link" href="${escapeHtml(item.readme)}" title="${escapeHtml(t.openReadme)}">${escapeHtml(t.viewReadme)}</a>
             <span class="scaffold-path">${escapeHtml(item.path)}</span>
           </div>
         </article>
@@ -643,21 +979,62 @@
       }
     };
 
-    // 渲染全部脚手架卡片
-    document.getElementById('scaffoldGrid').innerHTML = SCAFFOLDS.map(renderCard).join('');
+    // 常用 DOM 引用
+    const grid = document.getElementById('scaffoldGrid');
+    const langToggle = document.getElementById('langToggle');
+
+    /**
+     * 应用指定语言：刷新页面标题、静态文案与卡片内容
+     * @param {'en'|'zh'} lang 目标语言
+     */
+    const applyLanguage = (lang) => {
+      currentLang = lang;
+      const t = I18N[lang];
+
+      // 同步 <html lang> 与浏览器标题（利于搜索引擎与读屏器）
+      document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+      document.title = t.pageTitle;
+
+      // 静态文案：按 data-i18n 键名批量替换
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.dataset.i18n;
+        if (t[key] !== undefined) {
+          element.textContent = t[key];
+        }
+      });
+
+      // 按钮显示「目标语言」：英文界面显示“中文”，中文界面显示“English”
+      langToggle.textContent = lang === 'en' ? '中文' : 'English';
+      langToggle.setAttribute(
+        'aria-label',
+        lang === 'en' ? 'Switch to Chinese' : 'Switch to English',
+      );
+      langToggle.setAttribute('title', lang === 'en' ? 'Switch to Chinese' : '切换到英文');
+
+      // 重新渲染卡片（名称 / 描述 / 能力 / 命令 / 按钮文案全部跟随语言）
+      grid.innerHTML = SCAFFOLDS.map(renderCard).join('');
+    };
+
+    // 语言切换按钮：在两个语言之间来回切换
+    langToggle.addEventListener('click', () => {
+      applyLanguage(currentLang === 'en' ? 'zh' : 'en');
+    });
 
     // 事件委托：点击「复制」按钮复制快速开始命令
-    document.getElementById('scaffoldGrid').addEventListener('click', async (event) => {
+    grid.addEventListener('click', async (event) => {
       const btn = event.target.closest('.copy-btn');
       if (!btn) return;
       const ok = await copyText(btn.dataset.commands);
       // 复制结果反馈到按钮文案，1.5 秒后恢复
-      const original = '复制';
-      btn.textContent = ok ? '已复制' : '复制失败';
+      const t = I18N[currentLang];
+      btn.textContent = ok ? t.copied : t.copyFailed;
       setTimeout(() => {
-        btn.textContent = original;
+        btn.textContent = t.copy;
       }, 1500);
     });
+
+    // 首次加载：默认英文
+    applyLanguage('en');
   </script>
 </body>
 </html>

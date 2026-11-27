@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 应用名称与通用文案资源 -->
+<resources>
+    <string name="app_name">Android 原生脚手架模板</string>
+</resources>

@@ -1,0 +1,32 @@
+# ============================================================
+# Git 忽略配置（Android 工程标准）
+# ============================================================
+
+# Gradle 构建产物与缓存
+.gradle/
+build/
+app/build/
+
+# 本机 SDK 路径（因机器而异，不能提交）
+local.properties
+
+# Android Studio / IDEA 配置
+.idea/
+*.iml
+.navigation/
+captures/
+
+# 签名文件（避免泄露正式签名）
+*.jks
+*.keystore
+keystore.properties
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志与临时文件
+*.log
+*.hprof
+.externalNativeBuild/
+.cxx/

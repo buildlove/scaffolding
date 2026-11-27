@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ============================================================
+  应用主题
+  说明：
+    Compose 应用只需一个无 ActionBar 的基础主题，
+    真正的配色由 Compose 的 MaterialTheme 接管
+  ============================================================
+-->
+<resources>
+    <style name="Theme.AndroidScaffoldingTemplate" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- 启动窗口背景色（跟随日间 / 夜间资源） -->
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+</resources>

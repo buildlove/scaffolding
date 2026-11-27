@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 暗色模式下的颜色覆盖 -->
+<resources>
+    <!-- 暗色下启动窗口背景：深蓝灰，避免启动时白屏刺眼 -->
+    <color name="window_background">#0F172A</color>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 颜色资源：启动窗口背景 + 应用图标背景色（与 Compose 主题保持一致） -->
+<resources>
+    <!-- 亮色下启动窗口背景：与 Compose 页面背景同色，避免启动闪白 -->
+    <color name="window_background">#F5F7FB</color>
+    <!-- 自适应图标背景：家族主题靛蓝色 -->
+    <color name="ic_launcher_background">#4F46E5</color>
+</resources>
