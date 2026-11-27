@@ -1,291 +1,294 @@
-# 脚手架模板集合
+# Li Yang's Scaffolding Templates
 
-> 开箱即用的全栈起步模板集合：**Web 前端 ×3 · 多端应用 · 移动应用 · 桌面客户端 · 后端服务 ×4**，共 10 套脚手架。
-> 各模板 clone 后安装依赖即可运行，可直接作为新项目的起步工程；首页风格与 README 结构保持统一。
+**English** | [简体中文](./README.zh-CN.md)
 
-- 📄 可视化导航页：双击本目录下的 [index.html](./index.html) 即可在浏览器中查看同款介绍页（含一键复制命令）
-- 📦 包管理器推荐 **pnpm**，Node.js ≥ 16（推荐 18 / 20 / 22；RN 模板需 ≥ 22.11）
-- 🌐 国内网络已内置 npmmirror 镜像（electron 二进制 / 打包工具）
+> A ready-to-use full-stack starter collection: **Web Frontend ×3 · Cross-platform · Mobile App · Desktop Client · Backend Service ×4** — 10 scaffolds in total.
+> Each template runs after cloning and installing dependencies, and can serve directly as the foundation of a new project. Home-page style and README structure stay consistent across the family.
 
-## 一、脚手架一览
+- 📄 Visual navigation page: double-click [index.html](./index.html) to view the same introduction in your browser (Chinese / English toggle, English by default; one-click command copy)
+- 📦 Recommended package manager: **pnpm**; Node.js ≥ 16 (18 / 20 / 22 recommended; the RN template needs ≥ 22.11)
+- 🌐 npmmirror mirrors are preconfigured for networks in China (electron binaries / packaging tools)
 
-| 图标 | 脚手架 | 类别 | 技术栈 | 开发端口 | 目录 |
+## 1. Scaffold Collection
+
+| Icon | Scaffold | Category | Tech Stack | Dev Port | Directory |
 | --- | --- | --- | --- | --- | --- |
-| 💚 | [Vue3 脚手架模板](#-vue3-脚手架模板web-前端) | Web 前端 | Vue 3.5 / Vite 4 / Pinia / Element Plus | 5005 | [vue3-scaffolding-template/](./vue3-scaffolding-template/) |
-| ⚛️ | [React19 脚手架模板](#️-react19-脚手架模板web-前端) | Web 前端 | React 19 / React Router 6 / Zustand / Ant Design | 3000 | [react19-scaffolding-template/](./react19-scaffolding-template/) |
-| 📱 | [uni-app Vue3 脚手架模板](#-uni-app-vue3-脚手架模板多端应用) | 多端应用 | uni-app 3 / Vue 3.5 / Vite 5 / Pinia | 5005 | [uniapp-vue3-scaffolding-template/](./uniapp-vue3-scaffolding-template/) |
-| 📲 | [React Native 脚手架模板](#-react-native-脚手架模板移动应用) | 移动应用 | React Native 0.88 / React 19 / TypeScript / RN Navigation 7 | Metro 8081 | [react-native-scaffolding-template/](./react-native-scaffolding-template/) |
-| 🖥️ | [Electron 脚手架模板](#️-electron-脚手架模板桌面客户端) | 桌面客户端 | Electron 43 / electron-vite 6 / Vue 3.5 | — | [electron-scaffolding-template/](./electron-scaffolding-template/) |
-| 🥚 | [Egg Swagger 后端模板](#-egg-swagger-后端模板后端服务) | 后端服务 | Egg.js 2 / egg-swagger2 / egg-mysql | 7001 | [egg_swagger/](./egg_swagger/) |
-| 🟩 | [Express 后端脚手架模板](#-express-后端脚手架模板后端服务) | 后端服务 | Node.js / Express 5 / Swagger / ESM | 7002 | [express-scaffolding-template/](./express-scaffolding-template/) |
-| 🐢 | [Koa 后端脚手架模板](#-koa-后端脚手架模板后端服务) | 后端服务 | Node.js / Koa 3 / Swagger / ESM | 7003 | [koa-scaffolding-template/](./koa-scaffolding-template/) |
-| 🏯 | [RuoYi Java 后端脚手架模板](#-ruoyi-java-后端脚手架模板后端服务) | 后端服务 | Java 8 / Spring Boot 2 / MyBatis / Spring Security | 80（建议 8080） | [ruoyi-scaffolding-template/](./ruoyi-scaffolding-template/) |
-| 🎏 | [RuoYi Vue3 前端脚手架模板](#-ruoyi-vue3-前端脚手架模板web-前端) | Web 前端 | Vue 3 / Vite / Element Plus / Pinia | 80 | [ruoyi-vue3-scaffolding-template/](./ruoyi-vue3-scaffolding-template/) |
+| 💚 | [Vue3 Scaffolding Template](./vue3-scaffolding-template/README.md) | Web Frontend | Vue 3.5 / Vite 4 / Pinia / Element Plus | 5005 | [vue3-scaffolding-template/](./vue3-scaffolding-template/) |
+| ⚛️ | [React19 Scaffolding Template](./react19-scaffolding-template/README.md) | Web Frontend | React 19 / React Router 6 / Zustand / Ant Design | 3000 | [react19-scaffolding-template/](./react19-scaffolding-template/) |
+| 📱 | [uni-app Vue3 Scaffolding Template](./uniapp-vue3-scaffolding-template/README.md) | Cross-platform | uni-app 3 / Vue 3.5 / Vite 5 / Pinia | 5005 | [uniapp-vue3-scaffolding-template/](./uniapp-vue3-scaffolding-template/) |
+| 📲 | [React Native Scaffolding Template](./react-native-scaffolding-template/README.md) | Mobile App | React Native 0.88 / React 19 / TypeScript / RN Navigation 7 | Metro 8081 | [react-native-scaffolding-template/](./react-native-scaffolding-template/) |
+| 🖥️ | [Electron Scaffolding Template](./electron-scaffolding-template/README.md) | Desktop Client | Electron 43 / electron-vite 6 / Vue 3.5 | — | [electron-scaffolding-template/](./electron-scaffolding-template/) |
+| 🥚 | [Egg Swagger Backend Template](./egg_swagger/README.md) | Backend Service | Egg.js 2 / egg-swagger2 / egg-mysql | 7001 | [egg_swagger/](./egg_swagger/) |
+| 🟩 | [Express Backend Scaffolding Template](./express-scaffolding-template/README.md) | Backend Service | Node.js / Express 5 / Swagger / ESM | 7002 | [express-scaffolding-template/](./express-scaffolding-template/) |
+| 🐢 | [Koa Backend Scaffolding Template](./koa-scaffolding-template/README.md) | Backend Service | Node.js / Koa 3 / Swagger / ESM | 7003 | [koa-scaffolding-template/](./koa-scaffolding-template/) |
+| 🏯 | [RuoYi Java Backend Scaffolding Template](./ruoyi-scaffolding-template/README.md) | Backend Service | Java 8 / Spring Boot 2 / MyBatis / Spring Security | 80 (8080 recommended) | [ruoyi-scaffolding-template/](./ruoyi-scaffolding-template/) |
+| 🎏 | [RuoYi Vue3 Frontend Scaffolding Template](./ruoyi-vue3-scaffolding-template/README.md) | Web Frontend | Vue 3 / Vite / Element Plus / Pinia | 80 | [ruoyi-vue3-scaffolding-template/](./ruoyi-vue3-scaffolding-template/) |
 
 ---
 
-## 二、脚手架详情
+## 2. Scaffold Details
 
-### 💚 Vue3 脚手架模板（Web 前端）
+### 💚 Vue3 Scaffolding Template (Web Frontend)
 
-Vue3.5 + Vite 起步工程，覆盖嵌套路由、状态管理、请求封装等常用能力，可直接作为新 Web 项目的起步模板。
+A Vue 3.5 + Vite starter covering nested routing, state management and request encapsulation — ready to use as the foundation of a new web project.
 
-**技术栈：** `Vue 3.5` `Vite 4` `Pinia` `Vue Router 4` `Element Plus` `Axios`
+**Tech stack:** `Vue 3.5` `Vite 4` `Pinia` `Vue Router 4` `Element Plus` `Axios`
 
-**核心能力：**
+**Highlights:**
 
-- 首页演示：Pinia 计数器 / 路由节点分页联动
-- 嵌套路由 + 二级侧边菜单 + 动态浏览器标题
-- Axios 统一封装（拦截器 + 统一错误提示）
-- Element Plus 按需自动引入（中文语言包）
+- Home demo: Pinia counter / route-node pagination in sync
+- Nested routes + secondary side menu + dynamic browser title
+- Unified Axios wrapper (interceptors + unified error prompts)
+- Element Plus on-demand auto import (Chinese locale)
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 pnpm install
-pnpm run dev   # 端口 5005
+pnpm run dev   # port 5005
 ```
 
-📄 详细文档：[vue3-scaffolding-template/README.md](./vue3-scaffolding-template/README.md)
+📄 Detailed docs: [vue3-scaffolding-template/README.md](./vue3-scaffolding-template/README.md)
 
 ---
 
-### ⚛️ React19 脚手架模板（Web 前端）
+### ⚛️ React19 Scaffolding Template (Web Frontend)
 
-与 Vue3 版同款演示的 React 起步工程（已升级 React 19），风格功能与 vue3-scaffolding-template 保持一致。
+A React starter with the same demos as the Vue3 version (upgraded to React 19), consistent in style and features with vue3-scaffolding-template.
 
-**技术栈：** `React 19` `React Router 6` `Zustand` `Ant Design` `CRA + rewired`
+**Tech stack:** `React 19` `React Router 6` `Zustand` `Ant Design` `CRA + rewired`
 
-**核心能力：**
+**Highlights:**
 
-- 首页演示与 Vue3 版逐项对齐（横幅 / 技术栈 / 功能演示）
-- Hash 嵌套路由 + 菜单精确联动高亮
-- Zustand 状态管理（state / 派生值 / actions 范例）
-- Axios 统一封装 + Ant Design 中文语言包
+- Home demo aligned item by item with the Vue3 version (banner / tech stack / demos)
+- Hash nested routing + precise menu highlight sync
+- Zustand state management (state / derived values / actions examples)
+- Unified Axios wrapper + Ant Design Chinese locale
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 pnpm install
-pnpm start   # 端口 3000
+pnpm start   # port 3000
 ```
 
-📄 详细文档：[react19-scaffolding-template/README.md](./react19-scaffolding-template/README.md)
+📄 Detailed docs: [react19-scaffolding-template/README.md](./react19-scaffolding-template/README.md)
 
 ---
 
-### 📱 uni-app Vue3 脚手架模板（多端应用）
+### 📱 uni-app Vue3 Scaffolding Template (Cross-platform)
 
-uni-app 3 + Vue3.5 多端起步工程，一套代码可发布到 H5、微信小程序与 App，首页视觉与 Vue3 版保持一致。
+uni-app 3 + Vue 3.5 multi-platform starter: one codebase publishes to H5, WeChat Mini Program and App, with the same home-page look as the Vue3 version.
 
-**技术栈：** `uni-app 3` `Vue 3.5` `Vite 5` `Pinia` `Less`
+**Tech stack:** `uni-app 3` `Vue 3.5` `Vite 5` `Pinia` `Less`
 
-**核心能力：**
+**Highlights:**
 
-- 一套代码多端发布（H5 / 微信小程序 / App）
-- 页面路由（pages.json）+ Pinia + 请求封装同款能力
-- 公共组件 easycom 自动引入（顶部导航 / 卡片容器）
-- 扁平化 node_modules 配置，兼容 pinia 4 依赖解析
+- One codebase, multiple platforms (H5 / WeChat Mini Program / App)
+- Page routing (pages.json) + Pinia + request wrapper, same capabilities
+- easycom auto-import for shared components (top nav / card container)
+- Flattened node_modules config compatible with pinia 4 dependency resolution
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 pnpm install
-pnpm run dev:h5          # H5，端口 5005
-pnpm run dev:mp-weixin   # 微信小程序
+pnpm run dev:h5          # H5, port 5005
+pnpm run dev:mp-weixin   # WeChat Mini Program
 ```
 
-📄 详细文档：[uniapp-vue3-scaffolding-template/README.md](./uniapp-vue3-scaffolding-template/README.md)
+📄 Detailed docs: [uniapp-vue3-scaffolding-template/README.md](./uniapp-vue3-scaffolding-template/README.md)
 
 ---
 
-### 📲 React Native 脚手架模板（移动应用）
+### 📲 React Native Scaffolding Template (Mobile App)
 
-React Native 0.88 + React 19 + TypeScript 起步工程，基于官方最新脚手架生成，内置原生导航栈与 Zustand 状态管理，一套代码发布 iOS / Android。
+React Native 0.88 + React 19 + TypeScript starter generated from the official latest template, with a native navigation stack and Zustand state management; one codebase for iOS / Android.
 
-**技术栈：** `React Native 0.88` `React 19` `TypeScript` `React Navigation 7` `Zustand 5`
+**Tech stack:** `React Native 0.88` `React 19` `TypeScript` `React Navigation 7` `Zustand 5`
 
-**核心能力：**
+**Highlights:**
 
-- 原生导航栈（native-stack）+ 安全区适配（刘海屏 / 底部指示条）
-- Zustand 状态管理（对齐 Pinia 计数器演示：state / 派生值 / actions）
-- 家族同款首页演示（欢迎横幅 / 技术栈 / 功能演示）
-- Jest 测试 + Metro 打包验证通过，pnpm 扁平化 node_modules 兼容配置
+- Native stack navigation + safe-area handling (notch / home indicator)
+- Zustand store (matching the Pinia counter demo: state / derived values / actions)
+- Family-style home demo (welcome banner / tech stack / feature demos)
+- Jest tests + verified Metro bundling, with pnpm flattened node_modules compatibility
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 pnpm install
-pnpm ios       # iOS（需 macOS + Xcode，首次先 cd ios && bundle exec pod install）
-pnpm android   # Android（需 Android Studio）
-pnpm start     # Metro 开发服务，端口 8081
+pnpm ios       # iOS (requires macOS + Xcode; run cd ios && bundle exec pod install first)
+pnpm android   # Android (requires Android Studio)
+pnpm start     # Metro dev server on port 8081
 ```
 
-📄 详细文档：[react-native-scaffolding-template/README.md](./react-native-scaffolding-template/README.md)
+📄 Detailed docs: [react-native-scaffolding-template/README.md](./react-native-scaffolding-template/README.md)
 
 ---
 
-### 🖥️ Electron 脚手架模板（桌面客户端）
+### 🖥️ Electron Scaffolding Template (Desktop Client)
 
-Electron + electron-vite 三进程起步工程，渲染层与 Vue3 版完全同款，一键打包 macOS / Windows / Linux 安装包。
+Electron + electron-vite three-process starter whose renderer matches the Vue3 version exactly; package macOS / Windows / Linux installers with one command.
 
-**技术栈：** `Electron 43` `electron-vite 6` `Vue 3.5` `Pinia` `Element Plus`
+**Tech stack:** `Electron 43` `electron-vite 6` `Vue 3.5` `Pinia` `Element Plus`
 
-**核心能力：**
+**Highlights:**
 
-- 主进程 / 预加载 / 渲染进程三段式结构（安全桥接示例）
-- 渲染层复用 Vue3 模板全部页面（首页完全同款）
-- electron-builder 打包（dmg / nsis / AppImage）
-- 内置 npmmirror 镜像，国内网络开箱即用
+- Main / preload / renderer three-part structure (secure bridge example)
+- Renderer reuses every page from the Vue3 template (identical home page)
+- electron-builder packaging (dmg / nsis / AppImage)
+- Built-in npmmirror mirrors for networks in China
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 pnpm install
-pnpm run dev         # 启动桌面窗口
-pnpm run build:mac   # 打包 dmg
+pnpm run dev         # launch the desktop window
+pnpm run build:mac   # build the dmg
 ```
 
-📄 详细文档：[electron-scaffolding-template/README.md](./electron-scaffolding-template/README.md)
+📄 Detailed docs: [electron-scaffolding-template/README.md](./electron-scaffolding-template/README.md)
 
 ---
 
-### 🥚 Egg Swagger 后端模板（后端服务）
+### 🥚 Egg Swagger Backend Template (Backend Service)
 
-Egg.js 2 + Swagger 起步工程，内置 MySQL、跨域与定时任务能力，自动生成在线 API 文档。
+Egg.js 2 + Swagger starter with MySQL, CORS and scheduled tasks built in; generates online API documentation automatically.
 
-**技术栈：** `Egg.js 2` `egg-swagger2` `egg-mysql` `egg-cors` `mysql_help`
+**Tech stack:** `Egg.js 2` `egg-swagger2` `egg-mysql` `egg-cors` `mysql_help`
 
-**核心能力：**
+**Highlights:**
 
-- Swagger 在线 API 文档自动生成（`/api/swagger/index.html`）
-- controller / service / router 分层 + definitions 模型定义
-- egg-mysql + mysql_help 数据库访问封装
-- 定时任务（schedule）与中间件（middleware）示例
+- Auto-generated Swagger API docs (`/api/swagger/index.html`)
+- controller / service / router layers + definitions models
+- egg-mysql + mysql_help database access wrapper
+- Scheduled tasks (schedule) and middleware examples
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 npm i
-npm run dev   # 端口 7001
-# Swagger 文档: http://127.0.0.1:7001/api/swagger/index.html
+npm run dev   # port 7001
+# Swagger docs: http://127.0.0.1:7001/api/swagger/index.html
 ```
 
-📄 详细文档：[egg_swagger/README.md](./egg_swagger/README.md)
+📄 Detailed docs: [egg_swagger/README.md](./egg_swagger/README.md)
 
 ---
 
-### 🟩 Express 后端脚手架模板（后端服务）
+### 🟩 Express Backend Scaffolding Template (Backend Service)
 
-Node.js + Express 5 起步工程（ESM），分层架构 + Swagger 文档 + 统一响应 / 错误处理，内置内存 CRUD 演示与接口测试。
+Node.js + Express 5 starter (ESM) with layered architecture, Swagger docs and unified responses / error handling, plus an in-memory CRUD demo and API tests.
 
-**技术栈：** `Node.js 18+` `Express 5` `swagger-jsdoc` `swagger-ui-express` `node:test`
+**Tech stack:** `Node.js 18+` `Express 5` `swagger-jsdoc` `swagger-ui-express` `node:test`
 
-**核心能力：**
+**Highlights:**
 
-- router / controller / service 三层架构（职责清晰）
-- Swagger 在线文档（`/api/docs`）+ OpenAPI JSON 导出
-- 统一响应 `{ code, message, data }` + 全局错误处理（Express 5 自动捕获 async 异常）
-- 请求日志 / 跨域 / 静态资源 / 优雅关闭 / 零依赖接口测试
+- router / controller / service three-layer architecture (clear responsibilities)
+- Swagger docs (`/api/docs`) + OpenAPI JSON export
+- Unified response `{ code, message, data }` + global error handling (Express 5 catches async errors automatically)
+- Request logging / CORS / static files / graceful shutdown / zero-dependency API tests
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 pnpm install
-pnpm run dev   # 端口 7002
-pnpm test      # 接口测试（node:test）
+pnpm run dev   # port 7002
+pnpm test      # API tests (node:test)
 ```
 
-📄 详细文档：[express-scaffolding-template/README.md](./express-scaffolding-template/README.md)
+📄 Detailed docs: [express-scaffolding-template/README.md](./express-scaffolding-template/README.md)
 
 ---
 
-### 🐢 Koa 后端脚手架模板（后端服务）
+### 🐢 Koa Backend Scaffolding Template (Backend Service)
 
-Node.js + Koa 3 起步工程（ESM），洋葱模型中间件 + 分层架构 + Swagger 文档，与 Express 版同款能力与演示。
+Node.js + Koa 3 starter (ESM) with onion-model middleware, layered architecture and Swagger docs — same capabilities and demos as the Express version.
 
-**技术栈：** `Node.js 18+` `Koa 3` `@koa/router` `koa2-swagger-ui` `node:test`
+**Tech stack:** `Node.js 18+` `Koa 3` `@koa/router` `koa2-swagger-ui` `node:test`
 
-**核心能力：**
+**Highlights:**
 
-- 洋葱模型：errorHandler 最外层统一捕获下游异常
-- router / controller / service 三层架构（职责清晰）
-- Swagger 在线文档（`/api/docs`）+ OpenAPI JSON 导出
-- 请求日志 / 跨域 / 静态资源 / 优雅关闭 / 零依赖接口测试
+- Onion model: the outermost errorHandler catches downstream errors
+- router / controller / service three-layer architecture (clear responsibilities)
+- Swagger docs (`/api/docs`) + OpenAPI JSON export
+- Request logging / CORS / static files / graceful shutdown / zero-dependency API tests
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 pnpm install
-pnpm run dev   # 端口 7003
-pnpm test      # 接口测试（node:test）
+pnpm run dev   # port 7003
+pnpm test      # API tests (node:test)
 ```
 
-📄 详细文档：[koa-scaffolding-template/README.md](./koa-scaffolding-template/README.md)
+📄 Detailed docs: [koa-scaffolding-template/README.md](./koa-scaffolding-template/README.md)
 
 ---
 
-### 🏯 RuoYi Java 后端脚手架模板（后端服务）
+### 🏯 RuoYi Java Backend Scaffolding Template (Backend Service)
 
-若依 RuoYi 最新版 Java 后端（Spring Boot 2 + MyBatis + Spring Security），内置用户 / 权限 / 菜单 / 字典 / 定时任务 / 代码生成等全套后台能力。
+RuoYi latest Java backend (Spring Boot 2 + MyBatis + Spring Security) with the full admin feature set: users / permissions / menus / dictionaries / scheduled tasks / code generation.
 
-**技术栈：** `Java 8` `Spring Boot 2` `MyBatis` `Spring Security` `Quartz` `Druid` `MySQL` `Redis`
+**Tech stack:** `Java 8` `Spring Boot 2` `MyBatis` `Spring Security` `Quartz` `Druid` `MySQL` `Redis`
 
-**核心能力：**
+**Highlights:**
 
-- RBAC 权限体系（用户 / 部门 / 岗位 / 角色 / 菜单 / 数据权限）
-- 代码生成：业务表一键生成 controller / service / mapper / vue 代码
-- Quartz 定时任务 + Druid 连接池监控
-- sql 脚本开箱即用（MySQL 库 `ry` + Redis，默认账号 admin / admin123）
+- RBAC permission system (users / departments / positions / roles / menus / data scope)
+- Code generator: one-click controller / service / mapper / vue code for business tables
+- Quartz scheduled jobs + Druid connection pool monitoring
+- SQL scripts ready to run (MySQL database `ry` + Redis; default account admin / admin123)
 
-**快速开始：**
+**Quick start:**
 
 ```bash
-# 1. 新建 MySQL 库 ry（utf8mb4），导入 sql/ry_20181008.sql、sql/quartz.sql
-# 2. 修改 ruoyi-admin/src/main/resources/application-druid.yml 数据源配置
+# 1. Create the MySQL database ry (utf8mb4) and import sql/ry_20181008.sql and sql/quartz.sql
+# 2. Edit the datasource in ruoyi-admin/src/main/resources/application-druid.yml
 mvn clean install -DskipTests
-mvn spring-boot:run -pl ruoyi-admin   # 默认端口 80（建议改 8080，与前端代理一致）
+mvn spring-boot:run -pl ruoyi-admin   # default port 80 (8080 recommended to match the frontend proxy)
 ```
 
-📄 详细文档：[ruoyi-scaffolding-template/README.md](./ruoyi-scaffolding-template/README.md)
+📄 Detailed docs: [ruoyi-scaffolding-template/README.md](./ruoyi-scaffolding-template/README.md)
 
 ---
 
-### 🎏 RuoYi Vue3 前端脚手架模板（Web 前端）
+### 🎏 RuoYi Vue3 Frontend Scaffolding Template (Web Frontend)
 
-若依 RuoYi-Vue3 最新版管理端前端（Vue3 + Element Plus + Vite），配套 RuoYi 后端的完整后台管理界面。
+RuoYi-Vue3 latest admin frontend (Vue3 + Element Plus + Vite), the complete admin UI for the RuoYi backend.
 
-**技术栈：** `Vue 3` `Vite` `Element Plus` `Pinia` `Axios`
+**Tech stack:** `Vue 3` `Vite` `Element Plus` `Pinia` `Axios`
 
-**核心能力：**
+**Highlights:**
 
-- 登录 / 权限 / 菜单 / 字典 / 定时任务等完整管理端页面
-- 动态路由 + 按钮级权限指令（v-hasPermi）
-- 与 RuoYi 后端开箱联调（代理直连后端）
-- 代码生成器生成的 vue 页面直接落位
+- Complete login / permission / menu / dictionary / scheduled-job pages
+- Dynamic routes + button-level permission directive (v-hasPermi)
+- Works with the RuoYi backend out of the box (proxy to the backend)
+- Pages generated by the code generator drop right in
 
-**快速开始：**
+**Quick start:**
 
 ```bash
 pnpm install
-pnpm dev   # 端口 80，/dev-api 代理 → http://localhost:8080（需先启动 RuoYi 后端）
+pnpm dev   # port 80; /dev-api proxies to http://localhost:8080 (start the RuoYi backend first)
 ```
 
-📄 详细文档：[ruoyi-vue3-scaffolding-template/README.md](./ruoyi-vue3-scaffolding-template/README.md)
+📄 Detailed docs: [ruoyi-vue3-scaffolding-template/README.md](./ruoyi-vue3-scaffolding-template/README.md)
 
 ---
 
-## 三、模板家族约定
+## 3. Template Family Conventions
 
-- 前端模板首页风格统一（渐变横幅 + 技术栈卡片 + 功能演示）
-- README 结构统一：核心版本 → 快速开始 → 目录结构 → 基本引入 → 常用配置
-- 包管理器推荐 pnpm，Node.js ≥ 16（推荐 18 / 20 / 22，RN 模板需 ≥ 22.11）
-- 开发端口约定：Vue3 / uni-app 5005、React 3000、Egg.js 7001、Express 7002、Koa 7003、RN Metro 8081、RuoYi 前端 80 / 后端 8080（后端默认 80，建议改 8080）
-- 前端请求域名统一由 `.env` 的 `VITE_TINTMCE_BASE_URL` 注入；后端统一响应 `{ code, message, data }`
-- 国内网络已内置 npmmirror 镜像（electron 二进制 / 打包工具）
+- Frontend templates share the same home-page style (gradient banner + tech-stack cards + feature demos)
+- READMEs follow a unified structure: core versions → quick start → directory structure → key imports → common config
+- Recommended package manager is pnpm, Node.js ≥ 16 (18 / 20 / 22 recommended; the RN template needs ≥ 22.11)
+- Dev port convention: Vue3 / uni-app 5005, React 3000, Egg.js 7001, Express 7002, Koa 7003, RN Metro 8081, RuoYi frontend 80 / backend 8080 (backend default 80; 8080 recommended)
+- Frontend request base URLs are injected via `VITE_TINTMCE_BASE_URL` in `.env`; backends share the `{ code, message, data }` response shape
+- npmmirror mirrors are preconfigured for networks in China (electron binaries / packaging tools)
 
-## 四、新增脚手架指引
+## 4. Adding a New Scaffold
 
-1. 以 [vue3-scaffolding-template](./vue3-scaffolding-template/) 为基准复制改造（后端可参照 express / koa 模板），首页与 README 结构保持家族一致，文案按技术栈适配
-2. 在 [index.html](./index.html) 的 `SCAFFOLDS` 数组中追加一项（卡片自动渲染）
-3. 在本文件「脚手架一览」表格与「脚手架详情」中追加对应小节
+1. Copy [vue3-scaffolding-template](./vue3-scaffolding-template/) as the base (use express / koa as references for backends); keep the home page and README structure consistent with the family and adapt the copy to the tech stack.
+2. Add an entry to the `SCAFFOLDS` array in [index.html](./index.html) (cards render automatically); the array is bilingual (`en` / `zh`).
+3. Add the corresponding row to the "Scaffold Collection" table and a section to "Scaffold Details" in this file.
+4. Update the Chinese version in [README.zh-CN.md](./README.zh-CN.md) as well.
